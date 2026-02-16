@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "al_citations"
-  spec.version       = "0.1.0"
+  spec.version       = "1.0.0"
   spec.authors       = ["al-org"]
   spec.email         = ["dev@al-org.dev"]
   spec.summary       = "Citation count tags for Google Scholar and InspireHEP"
