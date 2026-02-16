@@ -28,11 +28,13 @@ plugins:
 2. Use the tags in your templates:
 
 For Google Scholar:
+
 ```liquid
 {% google_scholar_citations scholar_id article_id %}
 ```
 
 For InspireHEP:
+
 ```liquid
 {% inspirehep_citations recid %}
 ```
@@ -40,8 +42,7 @@ For InspireHEP:
 ### Example
 
 ```liquid
-Citations: {% google_scholar_citations "YOUR_SCHOLAR_ID" "ARTICLE_ID" %}
-InspireHEP Citations: {% inspirehep_citations "INSPIRE_RECID" %}
+Citations: {% google_scholar_citations "YOUR_SCHOLAR_ID" "ARTICLE_ID" %} InspireHEP Citations: {% inspirehep_citations "INSPIRE_RECID" %}
 ```
 
 ## Development
