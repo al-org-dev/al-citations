@@ -1,54 +1,44 @@
-# Al-Citations
+# al-citations
 
-A Jekyll plugin that allows you to fetch and display citation counts from Google Scholar and InspireHEP in your Jekyll site.
+`al_citations` fetches and renders citation counts for `al-folio` v1.x and compatible Jekyll sites.
 
 ## Installation
-
-Add this line to your Jekyll site's Gemfile:
 
 ```ruby
 gem 'al_citations'
 ```
-
-And then execute:
-
-```bash
-$ bundle install
-```
-
-## Usage
-
-1. Add the plugin to your site's `_config.yml`:
 
 ```yaml
 plugins:
   - al_citations
 ```
 
-2. Use the tags in your templates:
+## Usage
 
-For Google Scholar:
+Google Scholar:
 
 ```liquid
 {% google_scholar_citations scholar_id article_id %}
 ```
 
-For InspireHEP:
+InspireHEP:
 
 ```liquid
 {% inspirehep_citations recid %}
 ```
 
-### Example
+Example:
 
 ```liquid
-Citations: {% google_scholar_citations "YOUR_SCHOLAR_ID" "ARTICLE_ID" %} InspireHEP Citations: {% inspirehep_citations "INSPIRE_RECID" %}
+Citations: {% google_scholar_citations "YOUR_SCHOLAR_ID" "ARTICLE_ID" %}
+InspireHEP Citations: {% inspirehep_citations "INSPIRE_RECID" %}
 ```
 
-## Development
+## Ecosystem context
 
-After checking out the repo, run `bundle install` to install dependencies.
+- Starter integration/docs live in `al-folio`.
+- Citation provider logic and rendering behavior are owned here.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub.
+Provider adapters, formatting, and reliability fixes should be contributed in this repository.
