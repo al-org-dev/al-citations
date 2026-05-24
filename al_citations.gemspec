@@ -19,9 +19,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "jekyll", ">= 3.9", "< 5.0"
-  spec.add_dependency "activesupport", ">= 6.0", "< 8.0"
+  spec.add_dependency "activesupport", ">= 6.0", "< 9.0"
   spec.add_dependency "nokogiri", ">= 1.13", "< 2.0"
 
-  spec.add_development_dependency "bundler", ">= 2.0", "< 3.0"
+  spec.add_development_dependency "bundler", ">= 2.0", "< 5.0"
   spec.add_development_dependency "rake", "~> 13.0"
 end
