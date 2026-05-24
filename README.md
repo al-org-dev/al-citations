@@ -30,8 +30,7 @@ InspireHEP:
 Example:
 
 ```liquid
-Citations: {% google_scholar_citations "YOUR_SCHOLAR_ID" "ARTICLE_ID" %}
-InspireHEP Citations: {% inspirehep_citations "INSPIRE_RECID" %}
+Citations: {% google_scholar_citations "YOUR_SCHOLAR_ID" "ARTICLE_ID" %} InspireHEP Citations: {% inspirehep_citations "INSPIRE_RECID" %}
 ```
 
 ## Ecosystem context

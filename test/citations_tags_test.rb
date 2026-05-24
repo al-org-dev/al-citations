@@ -20,11 +20,19 @@ class AlCitationsTagsTest < Minitest::Test
     template.render(vars)
   end
 
+  def with_singleton_method_stub(object, method_name, replacement)
+    original = object.method(method_name)
+    object.define_singleton_method(method_name, replacement)
+    yield
+  ensure
+    object.define_singleton_method(method_name, original)
+  end
+
   def test_google_scholar_parses_citation_count_from_meta_description
     html = '<html><head><meta name="description" content="Something. Cited by 1,234"></head></html>'
 
-    Kernel.stub(:rand, ->(*) { 0 }) do
-      URI.stub(:open, ->(*_args) { StringIO.new(html) }) do
+    with_singleton_method_stub(Kernel, :rand, ->(*) { 0 }) do
+      with_singleton_method_stub(URI, :open, ->(*_args) { StringIO.new(html) }) do
         output = render_google('scholar_id' => 'abc', 'article_id' => 'def')
 
         assert_match(/K|1,234|1234/, output)
@@ -36,8 +44,8 @@ class AlCitationsTagsTest < Minitest::Test
     html = '<html><head><meta property="og:description" content="Cited by 15"></head></html>'
     calls = 0
 
-    Kernel.stub(:rand, ->(*) { 0 }) do
-      URI.stub(:open, ->(*_args) { calls += 1; StringIO.new(html) }) do
+    with_singleton_method_stub(Kernel, :rand, ->(*) { 0 }) do
+      with_singleton_method_stub(URI, :open, ->(*_args) { calls += 1; StringIO.new(html) }) do
         first = render_google('scholar_id' => 'a', 'article_id' => 'b')
         second = render_google('scholar_id' => 'a', 'article_id' => 'b')
 
@@ -56,7 +64,7 @@ class AlCitationsTagsTest < Minitest::Test
       }
     }
 
-    Net::HTTP.stub(:get, payload.to_json) do
+    with_singleton_method_stub(Net::HTTP, :get, ->(*) { payload.to_json }) do
       output = render_inspire('recid_var' => '12345')
 
       assert_match(/K|1532/, output)
@@ -64,7 +72,7 @@ class AlCitationsTagsTest < Minitest::Test
   end
 
   def test_inspirehep_returns_na_on_error
-    Net::HTTP.stub(:get, ->(*) { raise StandardError, 'network down' }) do
+    with_singleton_method_stub(Net::HTTP, :get, ->(*) { raise StandardError, 'network down' }) do
       output = render_inspire('recid_var' => '99999')
 
       assert_equal 'N/A', output
